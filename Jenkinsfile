@@ -19,7 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sshagent(['ec2-ssh-user']) {
+                sshagent(['ec2-server-key']) {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh '''
                             ssh -o StrictHostKeyChecking=no ec2-user@13.201.50.244 "
